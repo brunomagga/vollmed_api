@@ -1,6 +1,7 @@
 package med.voll.api.medico;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,6 +37,20 @@ public class Medico {
         this.telefone = dados.telefone();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedicos dadosAtualizacaoMedicos) {
+        if(dadosAtualizacaoMedicos.nome() != null){
+            this.nome = dadosAtualizacaoMedicos.nome();
+        }
+        if(dadosAtualizacaoMedicos.telefone() != null){
+            this.telefone = dadosAtualizacaoMedicos.telefone();
+        }
+        if (dadosAtualizacaoMedicos.endereco() != null) {
+            this.endereco.atualizarInformacoes(dadosAtualizacaoMedicos.endereco());
+        }
+
+
     }
 }
 
