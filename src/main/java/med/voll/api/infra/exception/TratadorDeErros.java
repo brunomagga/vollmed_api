@@ -29,4 +29,5 @@ public class TratadorDeErros {
             this(error.getField(), error.getDefaultMessage());
         }
     }
+
 }
