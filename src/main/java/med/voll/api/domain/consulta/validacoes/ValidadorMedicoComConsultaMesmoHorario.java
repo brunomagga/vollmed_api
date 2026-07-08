@@ -5,15 +5,18 @@ import med.voll.api.domain.consulta.ConsultaRepository;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 import med.voll.api.domain.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class ValidadorMedicoComConsultaMesmoHorario {
+@Component
+public class ValidadorMedicoComConsultaMesmoHorario implements ValidadorAgendamentoConsulta {
 
+    @Autowired
     private ConsultaRepository consultaRepository;
 
     public void validar(DadosAgendamentoConsulta dados){
-        var medicoPossuiOutraCOnsultaMesmoHorario = consultaRepository.existsByMedicoIdAndData(dados.idMedico(), dados.data());
+        var medicoPossuiOutraConsultaMesmoHorario = consultaRepository.existsByMedicoIdAndData(dados.idMedico(), dados.data());
 
-        if(medicoPossuiOutraCOnsultaMesmoHorario){
+        if(medicoPossuiOutraConsultaMesmoHorario){
             throw new ValidacaoException("Médico ja possui consulta agendada nesse mesmo horario");
         }
     }
