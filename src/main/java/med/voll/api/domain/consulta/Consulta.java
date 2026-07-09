@@ -32,6 +32,10 @@ public class Consulta {
 
     private LocalDateTime data;
 
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
     public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
     }
 }
