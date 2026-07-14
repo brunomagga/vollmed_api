@@ -43,10 +43,10 @@ public class Medico {
     }
 
     public void atualizarInformacoes(DadosAtualizacaoMedicos dadosAtualizacaoMedicos) {
-        if(dadosAtualizacaoMedicos.nome() != null){
+        if (dadosAtualizacaoMedicos.nome() != null) {
             this.nome = dadosAtualizacaoMedicos.nome();
         }
-        if(dadosAtualizacaoMedicos.telefone() != null){
+        if (dadosAtualizacaoMedicos.telefone() != null) {
             this.telefone = dadosAtualizacaoMedicos.telefone();
         }
         if (dadosAtualizacaoMedicos.endereco() != null) {
@@ -57,6 +57,7 @@ public class Medico {
     }
 
     public void excluir() {
+        //Não exclui apenas deixa inativo
         this.ativo = false;
     }
 }

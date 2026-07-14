@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -45,17 +44,17 @@ class ConsultaControllerTest {
     @Test
     @DisplayName("Deveria devolver codigo http 400 quando informcaoes estao invalidas")
     @WithMockUser
-    void agendar_cenario1() throws Exception{
-       var response = mvc.perform(post("/consultas"))
+    void agendar_cenario1() throws Exception {
+        var response = mvc.perform(post("/consultas"))
                 .andReturn().getResponse();
 
-       assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
     @DisplayName("Deveria devolver codigo http 200 quando informcaoes estao validas")
     @WithMockUser
-    void agendar_cenario2() throws Exception{
+    void agendar_cenario2() throws Exception {
         var data = LocalDateTime.now().plusHours(1);
         var especialidade = Especialidade.CARDIOLOGIA;
 
@@ -68,7 +67,7 @@ class ConsultaControllerTest {
                         post("/consultas")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(dadosAgendamentoConsultaJson.write(
-                                        new DadosAgendamentoConsulta(2l,5l,data, especialidade)
+                                        new DadosAgendamentoConsulta(2l, 5l, data, especialidade)
                                 ).getJson())
                 )
                 .andReturn().getResponse();
